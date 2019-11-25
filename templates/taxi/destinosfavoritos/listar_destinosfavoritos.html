@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+    Listar Destinos Favoritos
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h3 class="one">&nbsp;</h3>
+        </div>
+        <div class="col-autor">
+            <a class="btn btn-primary pull-right" href="{% url 'taxi:crear_destinofavorito' %}">
+                <i class="fa fa-add"></i>Crear Destino Favorito
+            </a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descripcion</th>
+            <th>Usuario</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for destinofavorito in destinosfavoritos %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ destinofavorito.descripcion }}</td>
+                <td>{{ destinofavorito.usuario }}</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <a href="{% url 'taxi:editar_destinofavorito' destinofavorito.id %}" class="btn btn-warning">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="{% url 'taxi:eliminar_destinofavorito' destinofavorito.id %}" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

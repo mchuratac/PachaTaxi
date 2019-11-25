@@ -1,0 +1,61 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+    Listar Viajes
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h3 class="one">&nbsp;</h3>
+        </div>
+        <div class="col-autor">
+            <a class="btn btn-primary pull-right" href="{% url 'taxi:crear_viaje' %}">
+                <i class="fa fa-add"></i>Crear Viaje
+            </a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>PASAJERO</th>
+            <th>ORIGEN</th>
+            <th>DESTINO</th>
+            <th>FECHA_REGISTRO</th>
+            <th>FECHA_INICIO</th>
+            <th>FECHA_FIN</th>
+            <th>CONDUCTOR</th>
+            <th>PUNTAJE</th>
+            <th>ESTADO</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for viaje in viajes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ viaje.pasajero }}</td>
+                <td>{{ viaje.origen }}</td>
+                <td>{{ viaje.destino }}</td>
+                <td>{{ viaje.fecha_registro }}</td>       
+                <td>{{ viaje.fecha_inicio }}</td>  
+                <td>{{ viaje.fecha_fin }}</td>  
+                <td>{{ viaje.conductor }}</td>  
+                <td>{{ viaje.puntaje }}</td> 
+                <td>{{ viaje.estado }}</td> 
+
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <a href="{% url 'taxi:editar_viaje' viaje.id %}" class="btn btn-warning">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="{% url 'taxi:eliminar_viaje' viaje.id %}" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

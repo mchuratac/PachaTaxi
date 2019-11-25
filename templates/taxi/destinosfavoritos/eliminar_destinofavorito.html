@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+    Eliminar Destinos Favoritos
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <h2>¿Deseas eliminar el destino favorito {{ destinofavorito.descripcion }}?</h2>
+        <button class="btn btn-primary" type="submit">Eliminar</button>
+        <a class="btn btn-danger" href="{% url 'taxi:listar_destinosfavoritos' %}">Cancelar</a>
+    </form>
+{% endblock %}
